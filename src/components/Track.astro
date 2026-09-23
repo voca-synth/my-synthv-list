@@ -9,22 +9,30 @@ const { track } = Astro.props;
 ---
 
 <article class="track">
-  <div class="player" data-id={track.id} data-title={track.title}>
+  <a
+    class="player"
+    href={track.url}
+    data-id={track.id}
+    data-title={track.title}
+    aria-label={`Play ${track.title}`}
+  >
     <img
       src={`https://i.ytimg.com/vi/${track.id}/hqdefault.jpg`}
       alt=""
       loading="lazy"
       decoding="async"
+      width="480"
+      height="360"
     />
-    <button type="button" aria-label={`Play ${track.title}`}>
-      <svg viewBox="0 0 48 48" aria-hidden="true">
-        <circle cx="24" cy="24" r="23" />
-        <path d="M20 16v16l12-8Z" />
-      </svg>
-    </button>
-  </div>
+    <svg class="play" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="23"></circle>
+      <path d="M20 16v16l12-8Z"></path>
+    </svg>
+  </a>
   <p class="meta">
-    <span class="num">{String(track.n).padStart(2, '0')}</span>
-    <a href={track.url} target="_blank" rel="noopener noreferrer">{track.title}</a>
+    <span class="num" aria-hidden="true">{String(track.n).padStart(2, '0')}</span>
+    <a href={track.url} target="_blank" rel="noopener noreferrer">
+      <span class="sr-only">Track {track.n}: </span><span lang={track.lang}>{track.title}</span><span class="sr-only"> (opens YouTube in a new tab)</span>
+    </a>
   </p>
 </article>

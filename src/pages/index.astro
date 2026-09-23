@@ -5,6 +5,52 @@ import { loadGroups } from '../lib/list';
 const groups = loadGroups();
 const total = groups.reduce((sum, g) => sum + g.length, 0);
 const year = new Date().getFullYear();
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const pageUrl = new URL(base, Astro.site).href;
+const ogImage = new URL('og.png', pageUrl).href;
+const siteName = 'Synth V Favorites';
+const description = `A hand-picked list of ${total} favorite Synthesizer V songs, originals and covers, played from YouTube in a fixed order.`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${pageUrl}#website`,
+      url: pageUrl,
+      name: siteName,
+      description,
+      inLanguage: 'en',
+    },
+    {
+      '@type': 'MusicPlaylist',
+      '@id': `${pageUrl}#playlist`,
+      url: pageUrl,
+      name: siteName,
+      description,
+      image: ogImage,
+      numTracks: total,
+      isPartOf: { '@id': `${pageUrl}#website` },
+      track: {
+        '@type': 'ItemList',
+        numberOfItems: total,
+        itemListOrder: 'https://schema.org/ItemListOrderAscending',
+        itemListElement: groups.flat().map((t) => ({
+          '@type': 'ListItem',
+          position: t.n,
+          item: {
+            '@type': 'MusicRecording',
+            name: t.title,
+            url: t.url,
+            image: `https://i.ytimg.com/vi/${t.id}/hqdefault.jpg`,
+            ...(t.lang ? { inLanguage: t.lang } : {}),
+          },
+        })),
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -12,13 +58,36 @@ const year = new Date().getFullYear();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Synth V Favorites</title>
-    <meta name="description" content="A favorite list of Synthesizer V songs, in order." />
+    <title>{siteName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={siteName} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Synth V Favorites: a favorite list, in order" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteName} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, '\\u003c')} />
   </head>
   <body>
-    <div class="noise-layer"></div>
-    <div class="edge-accent"></div>
-    <div class="wash"></div>
+    <a class="skip-link" href="#set-01">Skip to the tracklist</a>
+
+    <div class="noise-layer" aria-hidden="true"></div>
+    <div class="edge-accent" aria-hidden="true"></div>
+    <div class="wash" aria-hidden="true"></div>
 
     <div class="right-col" aria-hidden="true">
       <span>Synth V</span>
@@ -35,7 +104,7 @@ const year = new Date().getFullYear();
         </h1>
         <p class="sub-line">{total} tracks · {groups.length} sets</p>
         <div class="bottom">
-          <span class="rule"></span>
+          <span class="rule" aria-hidden="true"></span>
           <span class="domain">YouTube</span>
         </div>
       </div>
@@ -44,8 +113,8 @@ const year = new Date().getFullYear();
     <main>
       {
         groups.map((group, i) => (
-          <section class="group" id={`set-${String(i + 1).padStart(2, '0')}`}>
-            <h2 class="label">Set {String(i + 1).padStart(2, '0')}</h2>
+          <section class="group" id={`set-${String(i + 1).padStart(2, '0')}`} aria-labelledby={`set-${String(i + 1).padStart(2, '0')}-title`} tabindex="-1">
+            <h2 class="label" id={`set-${String(i + 1).padStart(2, '0')}-title`}>Set {String(i + 1).padStart(2, '0')}</h2>
             <div class="grid">
               {group.map((track) => (
                 <TrackCard track={track} />
@@ -65,23 +134,26 @@ const year = new Date().getFullYear();
     </footer>
 
     <script>
-      // Lite embed: swap the thumbnail for the real iframe on click,
-      // so the page doesn't load every YouTube player up front.
-      document.querySelectorAll<HTMLElement>('.player').forEach((el) => {
-        el.addEventListener(
-          'click',
-          () => {
-            const iframe = document.createElement('iframe');
-            iframe.src = `https://www.youtube-nocookie.com/embed/${el.dataset.id}?autoplay=1`;
-            iframe.title = el.dataset.title ?? '';
-            iframe.allow =
-              'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-            iframe.allowFullscreen = true;
-            el.replaceChildren(iframe);
-          },
-          { once: true },
-        );
+      // Lite embed: each thumbnail is a plain link to YouTube (works without JS).
+      // With JS, a click swaps it for the real player in place and moves focus
+      // to it, so the page doesn't load every YouTube player up front.
+      document.querySelectorAll<HTMLAnchorElement>('a.player').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+          event.preventDefault();
+          const iframe = document.createElement('iframe');
+          iframe.src = `https://www.youtube-nocookie.com/embed/${link.dataset.id}?autoplay=1`;
+          iframe.title = `YouTube player: ${link.dataset.title ?? ''}`;
+          iframe.allow =
+            'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+          iframe.allowFullscreen = true;
+          const player = document.createElement('div');
+          player.className = 'player';
+          player.append(iframe);
+          link.replaceWith(player);
+          iframe.focus();
+        });
       });
     </script>
 
@@ -270,30 +342,27 @@ const year = new Date().getFullYear();
         transform: scale(1.02);
       }
 
-      .player button {
+      .player .play {
         position: absolute;
         inset: 0;
         margin: auto;
         width: 48px;
         height: 48px;
-        border: 0;
-        background: none;
-        cursor: pointer;
       }
 
-      .player button circle {
+      .player .play circle {
         fill: rgba(255, 255, 255, 0.12);
         stroke: #fff;
         stroke-width: 1;
         transition: fill 0.3s;
       }
 
-      .player button path {
+      .player .play path {
         fill: #fff;
       }
 
-      .player:hover button circle,
-      .player button:focus-visible circle {
+      .player:hover .play circle,
+      .player:focus-visible .play circle {
         fill: rgba(255, 255, 255, 0.28);
       }
 
@@ -337,7 +406,7 @@ const year = new Date().getFullYear();
       }
 
       .bstrip-text {
-        font-size: 9px;
+        font-size: 11px;
         font-weight: 300;
         letter-spacing: 0.45em;
         text-transform: uppercase;
@@ -356,6 +425,61 @@ const year = new Date().getFullYear();
       .bstrip-text a:hover {
         color: #111;
         border-bottom-color: #111;
+      }
+
+      /* Accessibility */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 16px;
+        top: -100px;
+        z-index: 100;
+        padding: 10px 14px;
+        background: #111;
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .skip-link:focus {
+        top: 16px;
+      }
+
+      :focus-visible {
+        outline: 2px solid #111;
+        outline-offset: 3px;
+      }
+
+      .player:focus-visible {
+        outline-offset: 4px;
+      }
+
+      .group:focus {
+        outline: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition: none !important;
+          animation: none !important;
+          scroll-behavior: auto !important;
+        }
+        .player:hover img {
+          transform: none;
+        }
       }
 
       @media (max-width: 640px) {

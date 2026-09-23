@@ -11,6 +11,14 @@ export interface Track {
   id: string;
   url: string;
   title: string;
+  /** Best-effort BCP 47 tag for the title: kana → ja, Han without kana → zh. */
+  lang?: string;
+}
+
+function titleLang(title: string): string | undefined {
+  if (/[\p{Script=Hiragana}\p{Script=Katakana}]/u.test(title)) return 'ja';
+  if (/\p{Script=Han}/u.test(title)) return 'zh';
+  return undefined;
 }
 
 function videoId(url: string): string | null {
@@ -40,7 +48,7 @@ export function loadGroups(): Track[][] {
     const title = comma < 0 ? url : line.slice(comma + 1).trim();
     const id = videoId(url);
     if (!id) throw new Error(`tracklist.txt: no YouTube video id in line: ${raw}`);
-    groups.at(-1)!.push({ n: ++n, id, url, title });
+    groups.at(-1)!.push({ n: ++n, id, url, title, lang: titleLang(title) });
   }
   return groups.filter((g) => g.length);
 }
