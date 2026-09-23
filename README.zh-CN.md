@@ -4,7 +4,7 @@
 
 一份用 Synthesizer V 演唱的私人歌单，收录原创曲与翻唱曲，直接从 YouTube 播放，按固定顺序排列。
 
-在线收听：**https://voca-synth.github.io/my-synthv-list/**，也可以[做一份你自己的歌单](#做一份你自己的歌单)。
+在线收听：**[https://voca-synth.github.io/my-synthv-list/](https://voca-synth.github.io/my-synthv-list/)**，也可以[做一份你自己的歌单](#做一份你自己的歌单)。
 
 ![Synth V Favorites 页面顶部](docs/screenshots/hero.png)
 
@@ -63,7 +63,7 @@ https://www.youtube.com/watch?v=VIDEO_ID, 页面上显示的标题
 2. 把 `tracklist.txt` 里的视频换成你喜欢的，按你的想法分组。
 3. 在 `src/pages/index.astro` 中修改页面标题和大标题。
 4. 在 `astro.config.mjs` 中，把 `site` 改为 `https://<你的用户名>.github.io`，把 `base` 改为 `/<你的仓库名>`。
-5. 在你的 fork 中进入 Settings → Pages，把 Source 设为 GitHub Actions。下次推送到 `main` 后页面就会上线。
+5. 在你的 fork 中进入 Settings → Pages，把 Source 设为 GitHub Actions。fork 默认不运行工作流，还需要在 Actions 标签页中启用。之后每次推送到 `main`，页面都会自动更新。
 
 上线后欢迎分享。在本仓库提交一个附上链接的 issue，让更多人看到；也可以把页面发给你收录的创作者，他们通常会很高兴知道有人喜欢自己的作品。对网站本身的改进，欢迎提交 pull request。
 
