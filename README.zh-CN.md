@@ -59,11 +59,11 @@ https://www.youtube.com/watch?v=VIDEO_ID, 页面上显示的标题
 
 每个人喜欢的歌都不一样。本项目是开源的，你可以用它做一个属于自己的歌单页面。不限于 Synthesizer V，VOCALOID、UTAU、CeVIO 或任何 YouTube 视频都可以。
 
-1. [Fork 本仓库](https://github.com/voca-synth/my-synthv-list/fork)，起一个你自己的名字。
+1. 点击 [Use this template](https://github.com/new?template_name=my-synthv-list&template_owner=voca-synth)，创建一份历史干净的副本，并起一个你自己的名字。如果想保留与本仓库的关联，也可以 [fork](https://github.com/voca-synth/my-synthv-list/fork)。
 2. 把 `tracklist.txt` 里的视频换成你喜欢的，按你的想法分组。
 3. 在 `src/pages/index.astro` 中修改页面标题和大标题。
 4. 在 `astro.config.mjs` 中，把 `site` 改为 `https://<你的用户名>.github.io`，把 `base` 改为 `/<你的仓库名>`。
-5. 在你的 fork 中进入 Settings → Pages，把 Source 设为 GitHub Actions。fork 默认不运行工作流，还需要在 Actions 标签页中启用。之后每次推送到 `main`，页面都会自动更新。
+5. 在你的仓库中进入 Settings → Pages，把 Source 设为 GitHub Actions。如果是 fork 的，fork 默认不运行工作流，还需要在 Actions 标签页中启用。之后每次推送到 `main`，页面都会自动更新。
 
 上线后欢迎分享。在本仓库提交一个附上链接的 issue，让更多人看到；也可以把页面发给你收录的创作者，他们通常会很高兴知道有人喜欢自己的作品。对网站本身的改进，欢迎提交 pull request。
 

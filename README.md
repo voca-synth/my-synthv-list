@@ -63,11 +63,11 @@ Rebuild after editing.
 
 Everyone's favorites are different, and this project is open source so you can build your own page with them. It doesn't have to be Synthesizer V: VOCALOID, UTAU, CeVIO or any mix of YouTube videos works the same way.
 
-1. [Fork this repository](https://github.com/voca-synth/my-synthv-list/fork) and give it your own name.
+1. Click [Use this template](https://github.com/new?template_name=my-synthv-list&template_owner=voca-synth) to create your own copy with a clean history, and give it your own name. You can also [fork it](https://github.com/voca-synth/my-synthv-list/fork) if you'd rather keep a link back to this repository.
 2. Replace the videos in `tracklist.txt` with yours, grouped into sets however you like.
 3. Change the page title and headline in `src/pages/index.astro`.
 4. In `astro.config.mjs`, set `site` to `https://<your-username>.github.io` and `base` to `/<your-repo-name>`.
-5. In your fork, go to Settings → Pages and set the source to GitHub Actions. Forks don't run workflows until you enable them, so also open the Actions tab and turn them on. Your page goes live on the next push to `main`.
+5. In your repository, go to Settings → Pages and set the source to GitHub Actions. If you forked, also open the Actions tab and enable workflows, since forks don't run them by default. Your page goes live on the next push to `main`.
 
 Once it's up, share it. Open an issue here with your link so others can find it, and send it to the creators you featured, who are usually glad to hear someone loves their work. Improvements to the site itself are welcome as pull requests.
 
