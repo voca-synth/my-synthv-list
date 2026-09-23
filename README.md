@@ -1,5 +1,7 @@
 # Synth V Favorites
 
+English | [简体中文](README.zh-CN.md)
+
 A small, hand-picked list of favorite songs sung with Synthesizer V: originals and covers, played straight from YouTube, in a fixed order.
 
 Listen at **https://voca-synth.github.io/my-synthv-list/**
