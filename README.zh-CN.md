@@ -61,7 +61,9 @@ https://www.youtube.com/watch?v=VIDEO_ID, 页面上显示的标题
 
 ## 免责声明
 
-这是一份非官方的粉丝歌单，与 Dreamtonics、YouTube 以及文中提到的任何音乐人、声源提供者或频道均无关联，也未获得其认可。所有歌曲、翻唱、插画和视频的权利归各自的创作者和权利人所有。
+这是一份非官方的粉丝歌单，与 Dreamtonics、YouTube 或 Google、任何声库开发商或发行商，以及文中提到的任何音乐人、声源提供者或频道均无关联，也未获得其赞助或认可。所有歌曲、翻唱、插画和视频的权利归各自的创作者和权利人所有。
+
+Synthesizer V 是 Dreamtonics Co., Ltd. 的商标。VOCALOID 是 Yamaha Corporation 的商标。YouTube 是 Google LLC 的商标。初音ミク（初音未来）和巡音ルカ（巡音流歌）是 Crypton Future Media, INC. 的商标。CeVIO 以及文中其他声库的名称和角色，归各自的开发商和权利人所有。其他商标归其各自所有者所有。文中使用这些名称仅用于标识和署名，不代表任何认可关系。
 
 本站不托管、不转载任何音频或视频，只链接并嵌入原始上传，播放量会计入创作者的视频。缩略图来自 YouTube，点击播放后会加载 YouTube 的隐私增强模式播放器（`youtube-nocookie.com`），适用 YouTube 的服务条款和隐私政策。
 

@@ -65,7 +65,9 @@ Rebuild after editing.
 
 ## Disclaimer
 
-This is an unofficial fan list. It isn't affiliated with or endorsed by Dreamtonics, YouTube, or any of the artists, voice providers or channels listed. All songs, covers, artwork and videos belong to their creators and rights holders.
+This is an unofficial fan list. It isn't affiliated with, sponsored by or endorsed by Dreamtonics, YouTube or Google, any voice bank developer or publisher, or any of the artists, voice providers or channels listed. All songs, covers, artwork and videos belong to their creators and rights holders.
+
+Synthesizer V is a trademark of Dreamtonics Co., Ltd., VOCALOID of Yamaha Corporation, and YouTube of Google LLC. Hatsune Miku and Megurine Luka are trademarks of Crypton Future Media, INC. CeVIO, and the names and characters of the other voice banks listed here, belong to their developers and rights holders. All other trademarks belong to their owners. Names are used here only to identify and credit the works, and their use doesn't imply any endorsement.
 
 The site doesn't host or redistribute any audio or video. It links to and embeds the original uploads, so every play counts toward the creators. Thumbnails come from YouTube, and pressing play loads YouTube's privacy-enhanced (`youtube-nocookie.com`) player, under YouTube's terms and privacy policy.
 
