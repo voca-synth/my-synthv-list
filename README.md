@@ -1,6 +1,6 @@
 # Synth V Favorites
 
-English | [简体中文](README.zh-CN.md)
+English | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
 A small, hand-picked list of favorite songs sung with Synthesizer V: originals and covers, played straight from YouTube, in a fixed order.
 
