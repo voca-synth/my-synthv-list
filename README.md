@@ -69,7 +69,7 @@ Everyone's favorites are different, and this project is open source so you can b
 4. In `astro.config.mjs`, set `site` to `https://<your-username>.github.io` and `base` to `/<your-repo-name>`.
 5. In your repository, go to Settings → Pages and set the source to GitHub Actions. If you forked, also open the Actions tab and enable workflows, since forks don't run them by default. Your page goes live on the next push to `main`.
 
-Once it's up, share it. Open an issue here with your link so others can find it, and send it to the creators you featured, who are usually glad to hear someone loves their work. Improvements to the site itself are welcome as pull requests.
+Once it's up, share it. Open an issue here with your link so others can find it, and send it to the creators you featured, who are usually glad to hear someone loves their work. Improvements to the site itself are welcome as pull requests. Before you publish, read the [disclaimer](#disclaimer): you're responsible for what your list shares.
 
 ## On mobile
 
@@ -84,6 +84,8 @@ Synthesizer V is a trademark of Dreamtonics Co., Ltd., VOCALOID of Yamaha Corpor
 The site doesn't host or redistribute any audio or video. It links to and embeds the original uploads, so every play counts toward the creators. Thumbnails come from YouTube, and pressing play loads YouTube's privacy-enhanced (`youtube-nocookie.com`) player, under YouTube's terms and privacy policy.
 
 Track 07 carries a content warning from its uploader, so check the video description before watching. Track 04 has been unlisted by its uploader, so it plays from this list but won't show up in YouTube search. Credits were taken from the video descriptions and original uploads in September 2026. Any video can be removed or made private at any time. If you're a creator and want your video taken off this list, open an issue.
+
+Lists that other people make with this project belong to the people who made them. We don't review, host or endorse them, and we're not responsible or liable for their content, including when someone links one in an issue here. If you make a list, it's up to you, at your own discretion, to check what you share: that the videos are official or authorized uploads, that the credits are right, that content warnings are in place, and that your page follows YouTube's terms and the law where you live. The code is provided as is, without warranty of any kind, as the license states.
 
 ## License
 
