@@ -1,6 +1,7 @@
 {
   "name": "astro-project",
   "private": true,
+  "license": "AGPL-3.0-only",
   "type": "module",
   "scripts": {
     "dev": "astro dev",

@@ -1,4 +1,7 @@
 ---
+// SPDX-FileCopyrightText: 2026 Voca Synth <https://github.com/didvc>
+// SPDX-License-Identifier: AGPL-3.0-only
+
 import TrackCard from '../components/Track.astro';
 import { loadGroups } from '../lib/list';
 
@@ -126,8 +129,48 @@ const jsonLd = {
     </main>
 
     <footer class="bstrip-detail">
+      <details class="legal">
+        <summary>Disclaimer</summary>
+        <div class="legal-body">
+          <p>
+            This is an unofficial fan list. It isn't affiliated with, sponsored by or endorsed by
+            Dreamtonics, YouTube or Google, any voice bank developer or publisher, or any of the
+            artists, voice providers or channels listed. All songs, covers, artwork and videos belong
+            to their creators and rights holders.
+          </p>
+          <p>
+            Synthesizer V is a trademark of Dreamtonics Co., Ltd., VOCALOID of Yamaha Corporation,
+            and YouTube of Google LLC. Hatsune Miku and Megurine Luka are trademarks of Crypton Future
+            Media, INC. CeVIO, and the names and characters of the other voice banks listed here,
+            belong to their developers and rights holders. All other trademarks belong to their
+            owners. Names are used here only to identify and credit the works, and their use doesn't
+            imply any endorsement.
+          </p>
+          <p>
+            This site doesn't host or redistribute any audio or video. It links to and embeds the
+            original uploads. Thumbnails come from YouTube, and pressing play loads YouTube's
+            privacy-enhanced player, under YouTube's terms and privacy policy. Any video can be
+            removed or made private at any time.
+          </p>
+          <p>
+            Lists that other people make with this project belong to the people who made them. We
+            don't review, host or endorse them, and we're not responsible or liable for their
+            content. Anyone making a list is responsible, at their own discretion, for checking what
+            they share: that the videos are official or authorized uploads, that the credits are
+            right, that content warnings are in place, and that the page follows YouTube's terms and
+            local law.
+          </p>
+          <p>
+            The site's code is licensed under the
+            <a href="https://github.com/voca-synth/my-synthv-list/blob/main/LICENSE">GNU AGPL-3.0</a>
+            and provided as is, without warranty of any kind. That license doesn't cover the listed
+            songs, videos or artwork. Creators who want a video removed can
+            <a href="https://github.com/voca-synth/my-synthv-list/issues">open an issue</a>.
+          </p>
+        </div>
+      </details>
       <div class="bstrip-text">
-        <span>© {year} Synth V Favorites</span>
+        <span>© {year} <a href="https://github.com/didvc">Voca Synth (github.com/didvc)</a></span>
         <span>Videos belong to their creators</span>
         <a href="https://github.com/voca-synth/my-synthv-list">Source on GitHub</a>
       </div>
@@ -426,6 +469,42 @@ const jsonLd = {
       .bstrip-text a:hover {
         color: #111;
         border-bottom-color: #111;
+      }
+
+      .legal {
+        margin-bottom: 2rem;
+        max-width: 72ch;
+        font-size: 13px;
+        font-weight: 300;
+        line-height: 1.7;
+        color: rgba(0, 0, 0, 0.72);
+      }
+
+      .legal summary {
+        cursor: pointer;
+        width: max-content;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.62);
+      }
+
+      .legal summary:hover {
+        color: #111;
+      }
+
+      .legal-body {
+        padding-top: 1rem;
+      }
+
+      .legal-body p + p {
+        margin-top: 0.9rem;
+      }
+
+      .legal-body a {
+        color: inherit;
+        text-underline-offset: 3px;
       }
 
       /* Accessibility */

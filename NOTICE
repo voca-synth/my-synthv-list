@@ -1,0 +1,49 @@
+Synth V Favorites (my-synthv-list)
+Copyright (C) 2026 Voca Synth <https://github.com/didvc>
+SPDX-License-Identifier: AGPL-3.0-only
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, version 3. It is distributed WITHOUT ANY WARRANTY; without
+even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE. See the LICENSE file for the full terms.
+
+Scope of the license
+--------------------
+The license covers this project's code and its own design assets (the page
+layout and styles, favicon.svg, og.png and the screenshots in docs/). It does
+not cover the songs, covers, videos, artwork, thumbnails or titles listed in
+tracklist.txt or shown on the site. Those belong to their creators and rights
+holders. This project does not host or redistribute any audio or video; it links
+to and embeds the original uploads on YouTube.
+
+Third-party services
+--------------------
+Thumbnails (i.ytimg.com, img.youtube.com) and the video player
+(youtube-nocookie.com) are loaded from YouTube at view time and are subject to
+YouTube's Terms of Service and Google's Privacy Policy.
+
+Third-party software
+--------------------
+The site is built with Astro (https://astro.build) and other npm packages
+listed in package.json. Each is distributed under its own license; see the
+package's own LICENSE file in node_modules.
+
+Trademarks
+----------
+Synthesizer V is a trademark of Dreamtonics Co., Ltd. VOCALOID is a trademark
+of Yamaha Corporation. YouTube is a trademark of Google LLC. Hatsune Miku and
+Megurine Luka are trademarks of Crypton Future Media, INC. CeVIO, and the names
+and characters of the other voice banks listed, belong to their developers and
+rights holders. All other trademarks belong to their respective owners. Names
+are used only to identify and credit the works and do not imply endorsement.
+This is an unofficial fan project, not affiliated with any of them.
+
+Lists made by others
+--------------------
+Lists that other people make with this project (by template, fork or
+otherwise) belong to the people who made them. The authors of this project do
+not review, host or endorse them and are not responsible or liable for their
+content. Anyone publishing a list is responsible, at their own discretion, for
+checking that what they share is lawful and properly credited and that it
+follows the terms of the services it uses.

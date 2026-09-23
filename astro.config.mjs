@@ -1,4 +1,6 @@
 // @ts-check
+// SPDX-FileCopyrightText: 2026 Voca Synth <https://github.com/didvc>
+// SPDX-License-Identifier: AGPL-3.0-only
 import { defineConfig } from 'astro/config';
 
 // Keep Astro's and Vite's caches inside the project (see .gitignore).

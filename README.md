@@ -83,10 +83,12 @@ Synthesizer V is a trademark of Dreamtonics Co., Ltd., VOCALOID of Yamaha Corpor
 
 The site doesn't host or redistribute any audio or video. It links to and embeds the original uploads, so every play counts toward the creators. Thumbnails come from YouTube, and pressing play loads YouTube's privacy-enhanced (`youtube-nocookie.com`) player, under YouTube's terms and privacy policy.
 
-Track 07 carries a content warning from its uploader, so check the video description before watching. Track 04 has been unlisted by its uploader, so it plays from this list but won't show up in YouTube search. Credits were taken from the video descriptions and original uploads in September 2026. Any video can be removed or made private at any time. If you're a creator and want your video taken off this list, open an issue.
+Track 07 carries a content warning from its uploader, so check the video description before watching. Track 04 has been unlisted by its uploader, so it plays from this list but won't show up in YouTube search. Credits were taken from the video descriptions and original uploads in September 2026. Any video can be removed or made private at any time. If you're a creator and want your video taken off this list, open an issue or email `scuba-had-goofy[at]duck.com`.
 
 Lists that other people make with this project belong to the people who made them. We don't review, host or endorse them, and we're not responsible or liable for their content, including when someone links one in an issue here. If you make a list, it's up to you, at your own discretion, to check what you share: that the videos are official or authorized uploads, that the credits are right, that content warnings are in place, and that your page follows YouTube's terms and the law where you live. The code is provided as is, without warranty of any kind, as the license states.
 
 ## License
 
-The site's code is licensed under the [GNU AGPL-3.0](LICENSE). This license does not cover the listed songs, videos or artwork.
+Copyright © 2026 Voca Synth ([github.com/didvc](https://github.com/didvc)). The site's code is licensed under the [GNU AGPL-3.0](LICENSE) (SPDX: `AGPL-3.0-only`). This license does not cover the listed songs, videos or artwork. See [NOTICE](NOTICE) for the scope of the license, third-party services and trademarks.
+
+Contact: open an issue, or email `scuba-had-goofy[at]duck.com`.
