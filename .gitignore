@@ -1,0 +1,8 @@
+node_modules
+.cache/
+.astro/
+dist/
+# Internal
+provenance/
+.kopiaignore
+.personal/

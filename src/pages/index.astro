@@ -1,0 +1,365 @@
+---
+import TrackCard from '../components/Track.astro';
+import { loadGroups } from '../lib/list';
+
+const groups = loadGroups();
+const total = groups.reduce((sum, g) => sum + g.length, 0);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Synth V Favorites</title>
+    <meta name="description" content="A favorite list of Synthesizer V songs, in order." />
+  </head>
+  <body>
+    <div class="noise-layer"></div>
+    <div class="edge-accent"></div>
+    <div class="wash"></div>
+
+    <div class="right-col" aria-hidden="true">
+      <span>Synth V</span>
+      <span>{year}</span>
+      <span>List</span>
+    </div>
+
+    <header class="stage">
+      <div class="content">
+        <span class="label">A favorite list, in order.</span>
+        <h1 class="headline">
+          Synth V<br />
+          <span class="line2">Favorites</span>
+        </h1>
+        <p class="sub-line">{total} tracks · {groups.length} sets</p>
+        <div class="bottom">
+          <span class="rule"></span>
+          <span class="domain">YouTube</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      {
+        groups.map((group, i) => (
+          <section class="group" id={`set-${String(i + 1).padStart(2, '0')}`}>
+            <h2 class="label">Set {String(i + 1).padStart(2, '0')}</h2>
+            <div class="grid">
+              {group.map((track) => (
+                <TrackCard track={track} />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </main>
+
+    <footer class="bstrip-detail">
+      <div class="bstrip-text">
+        <span>© {year} Synth V Favorites</span>
+        <span>Videos belong to their creators</span>
+      </div>
+    </footer>
+
+    <script>
+      // Lite embed: swap the thumbnail for the real iframe on click,
+      // so the page doesn't load every YouTube player up front.
+      document.querySelectorAll<HTMLElement>('.player').forEach((el) => {
+        el.addEventListener(
+          'click',
+          () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${el.dataset.id}?autoplay=1`;
+            iframe.title = el.dataset.title ?? '';
+            iframe.allow =
+              'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            el.replaceChildren(iframe);
+          },
+          { once: true },
+        );
+      });
+    </script>
+
+    <style is:global>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: #fff;
+        color: #111;
+        font-family: system-ui, sans-serif;
+      }
+
+      /* Pure white with noise */
+      .noise-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+      }
+
+      /* Thin accent — left edge */
+      .edge-accent {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, #a78bfa, #34d399, #60a5fa);
+        z-index: 5;
+      }
+
+      /* Barely-there watercolor wash top-right */
+      .wash {
+        position: fixed;
+        top: -10%;
+        right: -10%;
+        width: 55vw;
+        height: 55vw;
+        border-radius: 50%;
+        background: radial-gradient(ellipse, rgba(167, 139, 250, 0.08), rgba(96, 165, 250, 0.06) 50%, transparent 70%);
+        filter: blur(60px);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .stage,
+      main,
+      .bstrip-detail {
+        position: relative;
+        z-index: 10;
+        padding-left: max(3vw, 20px);
+        padding-right: calc(8vw + 40px);
+      }
+
+      .stage {
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+      }
+
+      .label {
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.62);
+        display: block;
+        margin-bottom: 2.5rem;
+      }
+
+      .headline {
+        font-weight: 100;
+        font-size: clamp(52px, 9.5vw, 136px);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: #111;
+      }
+
+      .headline .line2 {
+        display: block;
+        font-weight: 200;
+        color: transparent;
+        -webkit-text-stroke: 0.75px #111;
+        opacity: 0.6;
+      }
+
+      .sub-line {
+        font-size: 13px;
+        font-weight: 200;
+        letter-spacing: 0.12em;
+        color: rgba(0, 0, 0, 0.62);
+        margin-top: 3.5rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .bottom {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .rule {
+        width: 48px;
+        height: 1px;
+        background: #111;
+      }
+
+      .domain {
+        font-size: 14px;
+        font-weight: 200;
+        letter-spacing: 0.2em;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* Floated right column */
+      .right-col {
+        position: fixed;
+        right: 8vw;
+        top: 50%;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-size: 10px;
+        font-weight: 300;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.58);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      /* List */
+      .group {
+        padding: 4rem 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .group .label {
+        font-weight: 400;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 3rem 2rem;
+      }
+
+      .player {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        background: #111;
+        cursor: pointer;
+        overflow: hidden;
+      }
+
+      .player img,
+      .player iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+      }
+
+      .player img {
+        filter: grayscale(0.35);
+        transition: filter 0.4s, transform 0.6s;
+      }
+
+      .player:hover img {
+        filter: none;
+        transform: scale(1.02);
+      }
+
+      .player button {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 48px;
+        height: 48px;
+        border: 0;
+        background: none;
+        cursor: pointer;
+      }
+
+      .player button circle {
+        fill: rgba(255, 255, 255, 0.12);
+        stroke: #fff;
+        stroke-width: 1;
+        transition: fill 0.3s;
+      }
+
+      .player button path {
+        fill: #fff;
+      }
+
+      .player:hover button circle,
+      .player button:focus-visible circle {
+        fill: rgba(255, 255, 255, 0.28);
+      }
+
+      .meta {
+        display: flex;
+        gap: 1rem;
+        align-items: baseline;
+        margin-top: 1rem;
+      }
+
+      .num {
+        font-size: 28px;
+        font-weight: 100;
+        letter-spacing: -0.04em;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .meta a {
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        line-height: 1.6;
+        color: rgba(0, 0, 0, 0.72);
+        text-decoration: none;
+        overflow-wrap: anywhere;
+      }
+
+      .meta a:hover {
+        color: #111;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+
+      /* Bottom strip */
+      .bstrip-detail {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+      }
+
+      .bstrip-text {
+        font-size: 9px;
+        font-weight: 300;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.58);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem 3rem;
+      }
+
+      @media (max-width: 640px) {
+        .right-col {
+          display: none;
+        }
+        .stage,
+        main,
+        .bstrip-detail {
+          padding-left: 20px;
+          padding-right: 16px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>

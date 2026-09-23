@@ -1,0 +1,30 @@
+---
+import type { Track } from '../lib/list';
+
+interface Props {
+  track: Track;
+}
+
+const { track } = Astro.props;
+---
+
+<article class="track">
+  <div class="player" data-id={track.id} data-title={track.title}>
+    <img
+      src={`https://i.ytimg.com/vi/${track.id}/hqdefault.jpg`}
+      alt=""
+      loading="lazy"
+      decoding="async"
+    />
+    <button type="button" aria-label={`Play ${track.title}`}>
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" />
+        <path d="M20 16v16l12-8Z" />
+      </svg>
+    </button>
+  </div>
+  <p class="meta">
+    <span class="num">{String(track.n).padStart(2, '0')}</span>
+    <a href={track.url} target="_blank" rel="noopener noreferrer">{track.title}</a>
+  </p>
+</article>
