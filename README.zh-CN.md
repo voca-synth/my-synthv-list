@@ -1,6 +1,6 @@
 # Synth V Favorites
 
-[English](README.md) | 简体中文
+[English](README.md) | 简体中文 | [繁體中文](README.zh-TW.md)
 
 一份用 Synthesizer V 演唱的私人歌单，收录原创曲与翻唱曲，直接从 YouTube 播放，按固定顺序排列。
 
